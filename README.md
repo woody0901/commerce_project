@@ -30,3 +30,9 @@
  - 고객 피드백 및 문제 해결 : 고객의 피드백을 수집하고 문제 상황을 해결할 수 있는 프로 
    세스가 필요함.
 
+
+ [ ERD ]
+
+ ![image](https://github.com/k1mda/project_3/assets/148675403/18fb16c7-6a59-4636-8097-e4bca53f11f5)
+ ![image](https://github.com/k1mda/project_3/assets/148675403/581e081c-6e36-43dc-b1b3-dd142c514e93)
+
