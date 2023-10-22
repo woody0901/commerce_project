@@ -33,6 +33,7 @@
 
  [ ERD ]
 
- ![image](https://github.com/k1mda/project_3/assets/148675403/18fb16c7-6a59-4636-8097-e4bca53f11f5)
- ![image](https://github.com/k1mda/project_3/assets/148675403/581e081c-6e36-43dc-b1b3-dd142c514e93)
+ ![image](https://github.com/k1mda/project_3/assets/148675403/f310e755-cd94-4c1d-b9ff-d484afd44fa7)
+ ![image](https://github.com/k1mda/project_3/assets/148675403/8399aff2-2ba4-48aa-a68d-da2b8e01b08c)
+
 
