@@ -33,8 +33,9 @@
 
 
 [기술스택]
-![image](https://github.com/k1mda/project_3/assets/148675403/b4c9933c-ccfa-4d01-bfe5-a33d1c7de120) 
-![image](https://github.com/k1mda/project_3/assets/148675403/1e3626de-3fba-42e3-b7dd-0efa28131842)
+
+spring boot
+maria db
 
 
 
