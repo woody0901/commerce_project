@@ -1,45 +1,48 @@
 package com.example.commerce.service;
 
-import com.example.commerce.dto.LoginDto;
-import com.example.commerce.dto.UserRegistrationDto;
+import com.example.commerce.entity.Seller;
 import com.example.commerce.entity.User;
+import com.example.commerce.repository.SellerRepository;
 import com.example.commerce.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
+    private final SellerRepository sellerRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, SellerRepository sellerRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-    }
+        this.sellerRepository = sellerRepository;
+        this.passwordEncoder = passwordEncoder;
+    } //
 
-    public User registerUser(UserRegistrationDto registrationDto) throws Exception {
-        if (userRepository.existsByEmail(registrationDto.getEmail()) ||
-                userRepository.existsByName(registrationDto.getName())) {
-            throw new Exception("Email or Name already exists!");
+
+    public User registerUser(@Valid User user) throws Exception {
+        verifyEmailAndName(user.getEmail(), user.getName()); // 이메일과 이름 검증
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // 비밀번호 암호화
+        return userRepository.save(user);// 사용자 저장
+    } //회원가입 (예외 던짐)
+
+    public Seller registerSeller(@Valid Seller seller) throws Exception { //
+        verifyEmailAndName(seller.getEmail(), seller.getName());
+        seller.setPassword(passwordEncoder.encode(seller.getPassword()));
+        return sellerRepository.save(seller);
+    } //판매자 등록(예외 던짐)
+
+    private void verifyEmailAndName(String email, String name) throws Exception {
+        if (userRepository.existsByEmail(email) || sellerRepository.existsByEmail(email)) {
+            throw new Exception("Email is already in use.");
         }
-
-        User newUser = new User();
-        newUser.setEmail(registrationDto.getEmail());
-        newUser.setName(registrationDto.getName());
-        newUser.setPassword(registrationDto.getPassword()); // 비밀번호 암호화 로직 추가하기
-        newUser.setBirthdate(registrationDto.getBirthdate());
-        newUser.setGender(registrationDto.getGender());
-
-        return userRepository.save(newUser);
+        if (userRepository.existsByName(name) || sellerRepository.existsByName(name)) {
+            throw new Exception("Name is already in use.");
+        } // 사용자 중복 가입 방지
     }
 
-    public User validateUser(LoginDto loginDto) throws Exception {
-        User existingUser = userRepository.findByEmail(loginDto.getEmail())
-                .orElseThrow(() -> new Exception("User does not exist!"));
-
-        if (!existingUser.getPassword().equals(loginDto.getPassword())) { // 비밀번호 암호화 로직 추가하기
-            throw new Exception("Invalid password!");
-        }
-
-        return existingUser;
-    }
 }

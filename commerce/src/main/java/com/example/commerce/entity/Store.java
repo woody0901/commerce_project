@@ -15,10 +15,9 @@ public class Store {
 
     private String name;
 
-    @OneToOne(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    private boolean approved;
-
-
 }
+
