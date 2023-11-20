@@ -35,8 +35,7 @@
 
 
 [ERD]
-
-![image](https://github.com/k1mda/project_3/assets/148675403/2d2bf381-1a78-472e-9ce7-ec6854d34093)
+[Untitled (3).pdf](https://github.com/k1mda/project_3/files/13413772/Untitled.3.pdf)
 
 
 [기술스택]
